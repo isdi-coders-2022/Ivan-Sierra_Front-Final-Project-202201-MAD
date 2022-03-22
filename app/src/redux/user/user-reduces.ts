@@ -9,7 +9,7 @@ const initialState = {
   isLogged: false,
 };
 
-function userReducer(state:any = initialState, action: AnyAction):any {
+function userReducer(state:any = initialState, action: AnyAction): any {
   switch (action.type) {
     case actionTypes.login:
       return { ...action.payload, isLogged: true };

@@ -6,7 +6,7 @@ function Header(): JSX.Element {
     <div>
       <nav>
         <a href="# : string">Home</a>
-        <a href="# : string">Login/register</a>
+        <a href="# : string">Login</a>
       </nav>
 
       <h1>

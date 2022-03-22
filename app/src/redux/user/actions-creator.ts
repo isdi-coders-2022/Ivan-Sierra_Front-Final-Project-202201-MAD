@@ -1,10 +1,10 @@
-import { actionTypes } from "./action-types";
+// import { actionTypes } from "./action-types";
+// export function login(user: any) {
+// type: actionTypes.login
+// payload: user
+// };
 
-export function login(user: any){
-  type: actionTypes.login
-  payload: user
-}
+// export  function logout (): void {
+// type: actionTypes.logout
 
-export  function logout (){
-  type: actionTypes.logout
-};
+// };
