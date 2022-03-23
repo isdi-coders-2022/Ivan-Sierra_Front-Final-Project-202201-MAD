@@ -5,6 +5,7 @@
 }
 body{
   background: #4962a3;
+  width: 100%;
 }
 .flex{
   display: flex;
@@ -68,9 +69,24 @@ select{
   margin: 50px auto;
   height: 130px;
   background: #e1ecfc;
-  margin-bottom: 500px;
+  margin-bottom: 50px;
   p{
     text-align: center;
     padding-top: 15px;
+  }
+}
+.footer{
+  width: 100%;
+  padding-top: 20px;
+  text-align: center;
+  background: #e1ecfc;
+  p{
+    padding: 10px 0;
+  }
+  h2{
+    color:rgb(49, 150, 218);
+  span{
+    color: red!important;
+  }
   }
 }
