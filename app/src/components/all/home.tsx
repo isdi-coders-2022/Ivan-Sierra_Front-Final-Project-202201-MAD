@@ -47,6 +47,30 @@ function Home(): JSX.Element {
           </select>
         </div>
       </div>
+      <div className="carData">
+        <div className="flex">
+          <p> MARCA </p>
+          <p> MODELO </p>
+        </div>
+        <p className="servicio">Servicio seleccionado</p>
+        <div className="garages-prices">
+          <div className="garages">
+            <p>NOMBRE TALLER</p>
+            <p>NOMBRE TALLER</p>
+            <p>NOMBRE TALLER</p>
+          </div>
+          <div className="prices">
+            <p>50€</p>
+            <p>50€</p>
+            <p>50€</p>
+          </div>
+        </div>
+      </div>
+      <div className="garageData">
+        <p>NOMBRE TALLER</p>
+        <p>DIRECCION</p>
+        <p>TELEFONO</p>
+      </div>
     </>
   );
 }
