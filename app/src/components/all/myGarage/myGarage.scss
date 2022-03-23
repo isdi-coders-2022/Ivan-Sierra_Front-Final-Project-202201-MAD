@@ -1,0 +1,53 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  background: #4962a3;
+  width: 100%;
+}
+.flex{
+  display: flex;
+}
+.addNew{
+  width: 100%;
+  
+}
+.addNewItem{
+  width: 100%;
+  margin: auto;
+  
+}
+.listServices{
+  margin: 0px 30px;
+  background: #e1ecfc;
+  input{
+    width: 30px;
+  }
+}
+.group{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  
+  align-items: baseline;
+  p{
+    color: black;
+    padding-left: 10px;
+  }
+  input{
+    margin-right: 0;
+    width: 40px;
+    padding-left: 20%;
+    background-color: white;
+  }
+  width: 80%;
+  .trash{
+    color: red;
+  }
+}
+.buttonMyGarage{
+  display: flex;
+  justify-content: center;
+}
