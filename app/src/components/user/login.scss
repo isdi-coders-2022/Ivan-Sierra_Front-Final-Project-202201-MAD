@@ -16,22 +16,26 @@ form{
     color: white;
     text-align: start;
   }
-  h3{
-    color: white;
-    margin: 30px ;
-    width: 100%;
-    text-align: start;
-  }
+  
+}
+h3{
+  color: white;
+  margin: 30px ;
+  width: 100%;
+  text-align: start;
 }
 label{
-  display: block;
+  display: flex;
   width: 100%;
-  margin: auto;
+  margin: 10px auto;
 }
 input{
   height: 40px;
   width: 70%;
-  margin: 10px 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: auto;
+  margin-left: auto;
   border-radius: 10px;
   border: 0 none;
   background: #e1ecfc;
