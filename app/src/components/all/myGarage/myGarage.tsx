@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from '../footer';
 import ButtonAddChanges from './buttonChanges';
 import './myGarage.scss';
 import MyGarageData from './myGarageDates';
 
 function AddPrices(): JSX.Element {
+  const [garage, setGarage] = useState({});
+/*
+  useEffect(() => {
+    getAllGarages().then((data: any) => {
+      setGarage(data.data);
+    });
+  }, []);
+*/
   return (
     <>
       <div className="addNew">
@@ -68,3 +76,7 @@ function AddPrices(): JSX.Element {
   );
 }
 export default AddPrices;
+function getAllGarages() {
+  throw new Error('Function not implemented.');
+}
+
