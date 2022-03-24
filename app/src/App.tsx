@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import './App.css';
 import Footer from './components/all/footer';
@@ -11,18 +11,19 @@ import LoginForm from './components/user/login';
 
 function App(): JSX.Element {
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={Home} />
-        <Route path="/tallerForm" element={TallerForm} />
-        <Route path="/loginForm" element={LoginForm} />
-        <Route path="/addPrices" element={AddPrices} />
-      </Routes>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<TallerForm />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/taller" element={<AddPrices />} />
+        </Routes>
 
-      <Header />
-      <AddPrices />
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
