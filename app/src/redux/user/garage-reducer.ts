@@ -1,6 +1,6 @@
 /* eslint-disable default-param-last */
 import { Action, AnyAction } from 'redux';
-import { actionTypes } from './action-types';
+import { actionTypesGarage } from './action-types';
 
 const initialState = {
   token: '',
@@ -9,14 +9,19 @@ const initialState = {
   isLogged: false,
 };
 
-function userReducer(state:any = initialState, action: AnyAction): any {
+export function garageReducer(
+  state: any = initialState,
+  action: AnyAction,
+): any {
   switch (action.type) {
-    case actionTypes.login:
+    case actionTypesGarage.login:
       return { ...action.payload, isLogged: true };
-    case actionTypes.logout:
+    case actionTypesGarage.logout:
       return initialState;
+
+    case actionTypesGarage.update:
+      return { ...action.payload, isLogged: true };
     default:
       return state;
   }
 }
-export default userReducer;

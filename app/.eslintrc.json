@@ -4,9 +4,11 @@
         "es2021": true
     },
     "extends": [
+        "react-app",
+        "react-app/jest",
         "plugin:react/recommended",
-        "airbnb",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -19,9 +21,11 @@
     "plugins": [
         "react",
         "@typescript-eslint",
-        "react-hooks"
+        "react-hooks",
+        "eslint-config-prettier"
     ],
     "rules": {
+        "indent": "off",
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": ["error"],
         "react/jsx-filename-extension": [ "warn", {"extensions": [".tsx"]} ],
