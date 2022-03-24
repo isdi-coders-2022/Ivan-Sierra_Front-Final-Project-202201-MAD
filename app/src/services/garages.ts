@@ -10,6 +10,18 @@ export function login(user: GarageLoginI): Promise<AxiosResponse> {
   return axios.post(LOGIN_API, user);
 }
 
-export function register(user: GarageI): Promise<AxiosResponse> {
+export function insertGarage(user: GarageI): Promise<AxiosResponse> {
+  return axios.post(REGISTER_API, user);
+}
+export function getAllGarages(user: GarageI): Promise<AxiosResponse> {
+  return axios.post(REGISTER_API, user);
+}
+export function updateGarage(user: GarageI): Promise<AxiosResponse> {
+  return axios.post(REGISTER_API, user);
+}
+export function deleteGarage(user: GarageI): Promise<AxiosResponse> {
+  return axios.post(REGISTER_API, user);
+}
+export function getGarage(user: GarageI): Promise<AxiosResponse> {
   return axios.post(REGISTER_API, user);
 }

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 // import { useDispatch } from 'react-redux';
 import './login.scss';
+import { login, insertGarage } from '../../services/garages';
 
-function LoginForm(): JSX.Element {
+function LoginForm(mode: any): JSX.Element {
   const [user, setUser] = useState({ name: '', pass: '' });
 
   function handleChange(ev: any): void {
@@ -11,12 +12,27 @@ function LoginForm(): JSX.Element {
 
   function handleSubmit(ev: any): void {
     ev.preventDefault();
+
+    try {
+      let result;
+      if (mode.toLowerCase() === 'login') {
+        result = login({ ...user });
+      } else {
+        result = insertGarage(user);
+      }
+      dispatch(actions.login({ ...result.data, isLogged: true }));
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
     <form>
       <h3>Login</h3>
       <p>You User</p>
+      <legend>
+        {mode.toLowerCase() === 'login' ? 'Login' : 'Registration'}
+      </legend>
       <label htmlFor="user">
         <input
           id="user"
@@ -37,7 +53,8 @@ function LoginForm(): JSX.Element {
         />
       </label>
 
-      <button type="submit" onSubmit={handleSubmit}>
+      <button type="submit" onClick={handleSubmit}>
+        {mode.toLowerCase() === 'login' ? 'Login' : 'Registration'}
         Login
       </button>
     </form>
