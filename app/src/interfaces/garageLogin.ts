@@ -1,4 +1,4 @@
 export interface GarageLoginI {
-  username: string;
-  password: string;
+  name: string;
+  pass: string;
 }

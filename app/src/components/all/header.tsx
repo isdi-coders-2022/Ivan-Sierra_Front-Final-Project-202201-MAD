@@ -1,13 +1,12 @@
 import React from 'react';
 import './all.scss';
-import { ButtonLogin } from './buttonLogin';
 
 function Header(): JSX.Element {
   return (
     <div>
       <nav>
-        <a href="# : string">Home</a>
-        <a href="# : string"><ButtonLogin /></a>
+        <a href="/login : string">Login</a>
+        <a href="/register : string">Register</a>
       </nav>
 
       <h1>

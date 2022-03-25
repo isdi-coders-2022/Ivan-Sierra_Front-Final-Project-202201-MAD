@@ -1,13 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { GarageI } from '../../../interfaces/garage';
+import { registerGarage } from '../../../redux/user/actions-creator';
 
 import ButtonAddChanges from './buttonChanges';
 
 import './myGarage.scss';
 
 function MyGarageData(): JSX.Element {
+  const initialState: GarageI = {
+    user: '',
+    pass: '',
+    garage_name: '',
+    cif_nif: '',
+    email: '',
+    phone: '',
+    web: '',
+    address: '',
+    services: {
+      ruedas: 0,
+      aceite: 0,
+      filtros: 0,
+      amortiguadores: 0,
+      discos: 0,
+      pastillas: 0,
+      aire: 0,
+      bombillas: 0,
+    },
+  };
+  const [formState, setFormState] = useState(initialState);
+  const dispatch = useDispatch();
+
+  function handleChange(ev: any) {
+    setFormState({ ...formState, [ev.target.name]: ev.target.value });
+  }
+  function handleSubmit() {
+    dispatch(registerGarage(formState));
+  }
   return (
     <div className="myData">
-      <form>
+      <form onSubmit={handleSubmit}>
         <h3>Mis Datos</h3>
 
         <label htmlFor="user">
@@ -15,8 +47,9 @@ function MyGarageData(): JSX.Element {
             id="user"
             type="text"
             name="user"
-            value="register.user"
+            value={formState.user}
             placeholder="You User"
+            onChange={handleChange}
           />
         </label>
 
@@ -25,8 +58,9 @@ function MyGarageData(): JSX.Element {
             id="pass"
             type="password"
             name="pass"
-            value="register.pass"
+            value={formState.pass}
             placeholder="Password"
+            onChange={handleChange}
           />
         </label>
 
@@ -35,8 +69,9 @@ function MyGarageData(): JSX.Element {
             id="name"
             type="text"
             name="name"
-            value="register.name"
+            value={formState.garage_name}
             placeholder="Name Taller"
+            onChange={handleChange}
           />
         </label>
 
@@ -45,8 +80,9 @@ function MyGarageData(): JSX.Element {
             id="cif"
             type="text"
             name="cif"
-            value="register.cif"
+            value={formState.cif_nif}
             placeholder="CIF / NIF"
+            onChange={handleChange}
           />
         </label>
 
@@ -55,8 +91,9 @@ function MyGarageData(): JSX.Element {
             id="mail"
             type="email"
             name="mail"
-            value="register.mail"
+            value={formState.email}
             placeholder="Your Email"
+            onChange={handleChange}
           />
         </label>
 
@@ -65,8 +102,9 @@ function MyGarageData(): JSX.Element {
             id="phone"
             type="number"
             name="phone"
-            value="register.phone"
+            value={formState.phone}
             placeholder="Your Phone"
+            onChange={handleChange}
           />
         </label>
 
@@ -75,8 +113,9 @@ function MyGarageData(): JSX.Element {
             id="web"
             type="text"
             name="web"
-            value="register.web"
+            value={formState.web}
             placeholder="Web Page"
+            onChange={handleChange}
           />
         </label>
 
@@ -87,6 +126,7 @@ function MyGarageData(): JSX.Element {
             name="address"
             value="register.address"
             placeholder="Address"
+            onChange={handleChange}
           />
         </label>
       </form>

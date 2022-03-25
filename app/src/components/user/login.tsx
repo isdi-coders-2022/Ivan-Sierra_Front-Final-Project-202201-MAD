@@ -1,43 +1,42 @@
 import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import './login.scss';
 import { login, insertGarage } from '../../services/garages';
+import { GarageLoginI } from '../../interfaces/garageLogin';
+import * as actions from '../../redux/user/actions-creator';
+import { useNavigate } from 'react-router-dom';
 
-function LoginForm(mode: any): JSX.Element {
-  const [user, setUser] = useState({ name: '', pass: '' });
+function LoginForm(): JSX.Element {
+  const [user, setUser] = useState<GarageLoginI>({ name: '', pass: '' });
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handleChange(ev: any): void {
     setUser({ ...user, [ev.target.name]: ev.target.value });
   }
 
-  function handleSubmit(ev: any): void {
+  async function handleSubmit(ev: any) {
     ev.preventDefault();
-
     try {
-      let result;
-      if (mode.toLowerCase() === 'login') {
-        result = login({ ...user });
-      } else {
-        result = insertGarage(user);
-      }
+      const result = await login(user);
+
       dispatch(actions.login({ ...result.data, isLogged: true }));
+      navigate('/taller');
     } catch (error) {
       console.log(error);
     }
   }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <h3>Login</h3>
       <p>You User</p>
-      <legend>
-        {mode.toLowerCase() === 'login' ? 'Login' : 'Registration'}
-      </legend>
+      <legend>Login</legend>
       <label htmlFor="user">
         <input
           id="user"
           type="text"
-          name="user"
+          name="name"
           onChange={handleChange}
           value={user.name}
         />
@@ -53,10 +52,7 @@ function LoginForm(mode: any): JSX.Element {
         />
       </label>
 
-      <button type="submit" onClick={handleSubmit}>
-        {mode.toLowerCase() === 'login' ? 'Login' : 'Registration'}
-        Login
-      </button>
+      <button type="submit">Login</button>
     </form>
   );
 }
