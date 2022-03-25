@@ -16,11 +16,15 @@ export function garageReducer(
   switch (action.type) {
     case actionTypesGarage.login:
       return { ...action.payload, isLogged: true };
+      
     case actionTypesGarage.logout:
       return initialState;
 
     case actionTypesGarage.update:
       return { ...action.payload, isLogged: true };
+
+    case actionTypesGarage.register:
+      return { ...action.payload };
     default:
       return state;
   }

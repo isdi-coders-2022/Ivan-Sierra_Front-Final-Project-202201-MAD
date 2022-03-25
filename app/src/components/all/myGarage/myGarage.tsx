@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { getAllGarages } from '../../../services/garages';
+import { getGarage } from '../../../services/garages';
 import Footer from '../footer';
 import ButtonAddChanges from './buttonChanges';
 import './myGarage.scss';
-import MyGarageData from './myGarageDates';
+import MyGarageData from './registerGarage';
 
 function AddPrices(): JSX.Element {
   const [garage, setGarage] = useState({});
   
   useEffect(() => {
-    getAllGarages(user: GarageI): Promise<AxiosResponse<any, any >>.then((data: any) => {
-      setGarage(data.data);
+    getGarage().then((resp) =>{
+      console.log(resp.data);
+      setGarage(resp.data);
+    
+      
     });
   }, []);
 
