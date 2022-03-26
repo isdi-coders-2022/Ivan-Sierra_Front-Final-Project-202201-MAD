@@ -6,7 +6,7 @@ import Footer from './components/all/footer';
 import Header from './components/all/header';
 import Home from './components/all/home';
 import AddPrices from './components/all/myGarage/myGarage';
-import TallerForm from './components/user/add.taller';
+import TallerForm from './components/all/myGarage/registerGarage';
 import LoginForm from './components/user/login';
 
 function App(): JSX.Element {

@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { GarageI } from '../../../interfaces/garage';
+import { useNavigate } from 'react-router-dom';
+import { GarageRegisterI } from '../../../interfaces/garageRegister';
 import { registerGarage } from '../../../redux/user/actions-creator';
 
 import ButtonAddChanges from './buttonChanges';
 
 import './myGarage.scss';
 
-function MyGarageData(): JSX.Element {
-  const initialState: GarageI = {
+function TallerForm(): JSX.Element {
+  const initialState: GarageRegisterI = {
     user: '',
     pass: '',
     garage_name: '',
@@ -17,121 +18,106 @@ function MyGarageData(): JSX.Element {
     phone: '',
     web: '',
     address: '',
-    services: {
-      ruedas: 0,
-      aceite: 0,
-      filtros: 0,
-      amortiguadores: 0,
-      discos: 0,
-      pastillas: 0,
-      aire: 0,
-      bombillas: 0,
-    },
   };
   const [formState, setFormState] = useState(initialState);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handleChange(ev: any) {
     setFormState({ ...formState, [ev.target.name]: ev.target.value });
   }
   function handleSubmit() {
+    console.log('REGISTRO', formState);
     dispatch(registerGarage(formState));
+    navigate('/login');
   }
   return (
     <div className="myData">
       <form onSubmit={handleSubmit}>
-        <h3>Mis Datos</h3>
-
+        <h3>Añadir Taller</h3>
+        <p>You User</p>
         <label htmlFor="user">
           <input
             id="user"
             type="text"
             name="user"
             value={formState.user}
-            placeholder="You User"
             onChange={handleChange}
           />
         </label>
-
+        <p>Password</p>
         <label htmlFor="pass">
           <input
             id="pass"
             type="password"
             name="pass"
             value={formState.pass}
-            placeholder="Password"
             onChange={handleChange}
           />
         </label>
-
-        <label htmlFor="name">
+        <p>Name Taller</p>
+        <label htmlFor="garage_name">
           <input
-            id="name"
+            id="garage_name"
             type="text"
-            name="name"
+            name="garage_name"
             value={formState.garage_name}
-            placeholder="Name Taller"
             onChange={handleChange}
           />
         </label>
-
-        <label htmlFor="cif">
+        <p>CIF / NIF</p>
+        <label htmlFor="cif_nif">
           <input
-            id="cif"
+            id="cif_nif"
             type="text"
-            name="cif"
+            name="cif_nif"
             value={formState.cif_nif}
-            placeholder="CIF / NIF"
             onChange={handleChange}
           />
         </label>
-
-        <label htmlFor="mail">
+        <p>Your Email</p>
+        <label htmlFor="email">
           <input
-            id="mail"
+            id="email"
             type="email"
-            name="mail"
+            name="email"
             value={formState.email}
-            placeholder="Your Email"
             onChange={handleChange}
           />
         </label>
-
+        <p>Your phone</p>
         <label htmlFor="phone">
           <input
             id="phone"
             type="number"
             name="phone"
             value={formState.phone}
-            placeholder="Your Phone"
             onChange={handleChange}
           />
         </label>
-
+        <p>Web Page</p>
         <label htmlFor="web">
           <input
             id="web"
             type="text"
             name="web"
             value={formState.web}
-            placeholder="Web Page"
             onChange={handleChange}
           />
         </label>
-
+        <p>Address</p>
         <label htmlFor="address">
           <input
             id="address"
             type="text"
             name="address"
-            value="register.address"
-            placeholder="Address"
+            value={formState.address}
             onChange={handleChange}
           />
         </label>
+        <ButtonAddChanges />
       </form>
-      <ButtonAddChanges />
     </div>
   );
 }
-export default MyGarageData;
+export default TallerForm;

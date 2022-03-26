@@ -16,12 +16,12 @@ export function insertGarage(user: GarageI): Promise<AxiosResponse> {
 export function getAllGarages(user: GarageI): Promise<AxiosResponse> {
   return axios.post(REGISTER_API, user);
 }
-export function updateGarage(user: GarageI): Promise<AxiosResponse> {
-  return axios.post(REGISTER_API, user);
+export function updateGarage(id: string): Promise<AxiosResponse> {
+  return axios.patch(REGISTER_API + id);
 }
-export function deleteGarage(user: GarageI): Promise<AxiosResponse> {
-  return axios.post(REGISTER_API, user);
+export function deleteGarage(id: string): Promise<AxiosResponse> {
+  return axios.delete(REGISTER_API + id);
 }
-export function getGarage(user: GarageI): Promise<AxiosResponse> {
-  return axios.post(REGISTER_API, user);
+export function getGarage(id: string): Promise<AxiosResponse> {
+  return axios.get(REGISTER_API + id);
 }
