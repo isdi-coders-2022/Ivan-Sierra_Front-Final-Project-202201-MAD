@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../../redux/hooks';
 import { getGarage, updateGarage } from '../../../services/garages';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../footer';
 import ButtonAddChanges from './buttonChanges';
 import './myGarage.scss';
-//import MyGarageData from './registerGarage';
+import * as actions from '../../../redux/user/actions-creator';
 
 function AddPrices(): JSX.Element {
   const [garage, setGarage] = useState({
@@ -32,6 +33,7 @@ function AddPrices(): JSX.Element {
   const user = useAppSelector((state) => state.garage);
   console.log('AKI', user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     getGarage(user.id).then((resp) => {
       console.log(resp.data);
@@ -47,18 +49,23 @@ function AddPrices(): JSX.Element {
   };
   function handleSubmit(ev: any): any {
     ev.preventDefault();
-    updateGarage(garage._id).then((resp) => {
-      console.log(resp);
-      // dispatch(actions.update({ ...result.data, isLogged: true }));
-      //dispatch(login(resp.data));
-    });
+
+    try {
+      updateGarage(garage._id).then((data) => {
+        dispatch(actions.updateGarage({ ...data.data, isLogged: true }));
+        console.log('UPDATE', data.data);
+      });
+      //navigate('/login');
+    } catch (error) {
+      console.log(error);
+    }
   }
   return (
     <>
       <div className="updateData">
         <h3>Actualizar Servicio</h3>
 
-        <form className="listServices">
+        <form className="listServices" onSubmit={handleSubmit}>
           <div className="group">
             <p>ruedas</p>
             <input
@@ -139,8 +146,8 @@ function AddPrices(): JSX.Element {
             />
             <p> € </p>
           </div>
+          <ButtonAddChanges />
         </form>
-        <ButtonAddChanges />
       </div>
       <div>
         <form onSubmit={handleSubmit}>
@@ -232,8 +239,8 @@ function AddPrices(): JSX.Element {
               onChange={handleChange}
             />
           </label>
+          <ButtonAddChanges />
         </form>
-        <ButtonAddChanges />
       </div>
 
       <Footer />

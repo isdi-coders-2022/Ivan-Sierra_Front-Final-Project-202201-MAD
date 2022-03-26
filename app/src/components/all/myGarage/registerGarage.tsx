@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { GarageRegisterI } from '../../../interfaces/garageRegister';
-import { registerGarage } from '../../../redux/user/actions-creator';
+import { GarageI } from '../../../interfaces/garage';
+import * as actions from '../../../redux/user/actions-creator';
+import { insertGarage } from '../../../services/garages';
 
 import ButtonAddChanges from './buttonChanges';
 
 import './myGarage.scss';
 
 function TallerForm(): JSX.Element {
-  const initialState: GarageRegisterI = {
+  const initialState: GarageI = {
     user: '',
     pass: '',
     garage_name: '',
@@ -18,6 +19,16 @@ function TallerForm(): JSX.Element {
     phone: '',
     web: '',
     address: '',
+    services: {
+      ruedas: 0,
+      aceite: 0,
+      filtros: 0,
+      amortiguadores: 0,
+      discos: 0,
+      pastillas: 0,
+      aire: 0,
+      bombillas: 0,
+    },
   };
   const [formState, setFormState] = useState(initialState);
   const dispatch = useDispatch();
@@ -26,11 +37,20 @@ function TallerForm(): JSX.Element {
   function handleChange(ev: any) {
     setFormState({ ...formState, [ev.target.name]: ev.target.value });
   }
-  function handleSubmit() {
-    console.log('REGISTRO', formState);
-    dispatch(registerGarage(formState));
-    navigate('/login');
+  function handleSubmit(ev: any) {
+    ev.preventDefault();
+    try {
+      insertGarage({ ...formState }).then((data) => {
+        dispatch(actions.registerGarage({ ...data.data }));
+        console.log('REGISTRO', data.data);
+      });
+      
+      navigate('/login');
+    } catch (error) {
+      console.log(error);
+    }
   }
+
   return (
     <div className="myData">
       <form onSubmit={handleSubmit}>
@@ -115,7 +135,11 @@ function TallerForm(): JSX.Element {
             onChange={handleChange}
           />
         </label>
-        <ButtonAddChanges />
+        <div className="buttonMyGarage">
+          <button className="sendChanges" type="submit">
+            Guardar Cambios
+          </button>
+        </div>
       </form>
     </div>
   );

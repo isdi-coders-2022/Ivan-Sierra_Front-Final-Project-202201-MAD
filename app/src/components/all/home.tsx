@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './all.scss';
 import '../user/login.scss';
+import { CarI } from '../../interfaces/car';
 
 function Home(): JSX.Element {
+  const [car, setCar] = useState<CarI>({ marca: '', modelo: '' });
   return (
     <>
       <div>
@@ -18,7 +20,7 @@ function Home(): JSX.Element {
             />
           </label>
           <p>Marca</p>
-          <label htmlFor="marcq">
+          <label htmlFor="marca">
             <input id="marca" type="text" name="marca" value="buscador.marca" />
           </label>
           <p>Modelo</p>
