@@ -31,7 +31,7 @@ function LoginForm(): JSX.Element {
     <form onSubmit={handleSubmit}>
       <h3>Login</h3>
       <p>You User</p>
-      <legend>Login</legend>
+
       <label htmlFor="user">
         <input
           id="user"
