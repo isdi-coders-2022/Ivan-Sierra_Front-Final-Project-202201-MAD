@@ -14,7 +14,7 @@ export function insertGarage(user: GarageI): Promise<AxiosResponse> {
   return axios.post(REGISTER_API, user);
 }
 export function getAllGarages(user: GarageI): Promise<AxiosResponse> {
-  return axios.post(REGISTER_API, user);
+  return axios.get(REGISTER_API);
 }
 export function updateGarage(id: string): Promise<AxiosResponse> {
   return axios.patch(REGISTER_API + id);

@@ -24,23 +24,20 @@ nav{
   justify-content: space-around!important;
 }
 
-.rojo{
-  
-}
 .caja{
-  width: 100%;
-  display: flex;
+  
+  
+  margin: auto;
+  justify-content: center;
+  
 }
 select{
   width: 70%;
   border-radius: 10px;
   height: 40px;
+  margin: 10px auto;
   background: #e1ecfc;
   justify-content: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: auto;
-  margin-left: auto;
 }
 .carData{
   width: 80%;
