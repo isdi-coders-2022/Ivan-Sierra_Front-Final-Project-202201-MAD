@@ -9,7 +9,7 @@ body{
 form{
   display: flex;
   flex-wrap: wrap;
-  margin-top: 50px;
+  
   p{
     margin: auto;
     width: 70%;
@@ -39,14 +39,15 @@ input{
   border-radius: 10px;
   border: 0 none;
   background: #e1ecfc;
+  padding-left: 10px;
 }
 button{
   padding: 10px 40px;
   border-radius: 10px;
   margin: 30px auto;
   border: 0 none;
-  background: #e1ecfc;
-
+  background: #3196da;
+  color: white;
 }
 footer{
   width: 100%;

@@ -14,19 +14,18 @@ h1{
   color:rgb(49, 150, 218);
   text-align: center;
   margin-top: 50px;
+  padding-bottom: 50px;
   span{
     color: red!important;
   }
 }
 nav{
   display: flex;
-  margin-top: 25px;
   justify-content: space-around!important;
 }
 
 .caja{
-  
-  
+
   margin: auto;
   justify-content: center;
   
@@ -44,22 +43,34 @@ select{
   margin: 50px auto;
   height: 500px;
   background: #e1ecfc;
+  font-size: 15px;
   
   
   .flex{
     padding-top: 30px;
-    justify-content: space-around;
+    justify-content: center;
+    p{
+      font-size: 25px;
+      color: black;
+      padding: 0 5px;
+    }
   }
 }
 .servicio{
   margin-top: 30px;
-  margin-left: 15px;
+  margin-left: 40px;
+  margin-bottom: 20px;
+  font-size: 25px;
+  color: white;
 }
 .garages-prices{
   margin-top: 50px;
-  display: flex;
-  justify-content: space-around;
-
+  
+  .garages{
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+  }
 }
 .garageData{
   width: 80%;
@@ -86,4 +97,20 @@ select{
     color: red!important;
   }
   }
+}
+.buttonHeader button{
+    border-bottom: 0;
+    background-color: none!important;
+    border: none;
+}
+.car{
+  border-bottom: 3px solid black;
+  background: rgb(49, 150, 218);
+}
+.header{
+  background-image: url("../../images/taller3.jpg");
+  margin-top: 0;
+}
+.headerLogged{
+  background-image: url("../../images/taller1.jpg");
 }

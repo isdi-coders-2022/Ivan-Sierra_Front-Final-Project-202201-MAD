@@ -13,7 +13,6 @@ function App(): JSX.Element {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<TallerForm />} />

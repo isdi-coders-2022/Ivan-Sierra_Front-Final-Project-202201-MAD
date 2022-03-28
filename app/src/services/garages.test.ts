@@ -37,7 +37,7 @@ describe('Given the service api', () => {
   });
 
   test('When getAll is running, axios.get should be called', () => {
-    garage.getAllGarages(garageUser);
+    garage.getAllGarages();
     expect(axios.get).toHaveBeenCalled();
   });
   test('When get is running, axios.get should be called', () => {
@@ -49,7 +49,7 @@ describe('Given the service api', () => {
     expect(axios.post).toHaveBeenCalled();
   });
   test('When update is running, axios.patch should be called', () => {
-    garage.updateGarage(id);
+    garage.updateGarage(id, garageUser);
     expect(axios.patch).toHaveBeenCalled();
   });
   test('When remove is running, axios.delete should be called', () => {

@@ -12,7 +12,7 @@ body{
 }
 .updateData{
   width: 100%;
-  
+  margin-bottom: 20px;
 }
 .addNewItem{
   width: 100%;
@@ -28,7 +28,7 @@ body{
 }
 .group{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   margin: auto;
   
   align-items: baseline;
@@ -38,16 +38,43 @@ body{
   }
   input{
     margin-right: 0;
-    width: 40px;
-    padding-left: 20px;
+    width: 55px;
+    padding-left: 10%;
     background-color: white;
   }
   width: 80%;
   .trash{
     color: red;
   }
+  .prices{
+    display: flex;
+    width: 30%;
+  }
+  .nameService{
+    width: 70%;
+  }
+}
+.sendChanges{
+  
+}
+.center{
+  display: flex;
+  justify-content: center;
+  margin: auto;
 }
 .buttonMyGarage{
   display: flex;
   justify-content: center;
+  margin: auto;
+}
+.borrar{
+  color: white;
+  background-color: #eb3c10;
+}
+.formPersonal{
+  background-image: url("../../../images/taller2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
 }

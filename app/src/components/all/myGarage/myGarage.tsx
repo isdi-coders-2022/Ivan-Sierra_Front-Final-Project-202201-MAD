@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../../redux/hooks';
-import { getGarage, updateGarage } from '../../../services/garages';
+import {
+  deleteGarage,
+  getGarage,
+  updateGarage,
+} from '../../../services/garages';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../footer';
-import ButtonAddChanges from './buttonChanges';
+
 import './myGarage.scss';
 import * as actions from '../../../redux/user/actions-creator';
+import HeaderLogged from '../headerLogged';
 
 function AddPrices(): JSX.Element {
   const [garage, setGarage] = useState({
@@ -23,6 +28,7 @@ function AddPrices(): JSX.Element {
     _id: '',
     user: '',
     pass: '',
+
     garage_name: '',
     cif_nif: '',
     email: '',
@@ -44,6 +50,7 @@ function AddPrices(): JSX.Element {
   const handleChange = (e: any) => {
     setGarage({
       ...garage,
+      [e.target.name]: e.target.value,
       services: { ...garage.services, [e.target.name]: e.target.value },
     });
   };
@@ -51,105 +58,159 @@ function AddPrices(): JSX.Element {
     ev.preventDefault();
 
     try {
-      updateGarage(garage._id).then((data) => {
+      updateGarage(garage._id, garage).then((data) => {
         dispatch(actions.updateGarage({ ...data.data, isLogged: true }));
         console.log('UPDATE', data.data);
       });
-      //navigate('/login');
     } catch (error) {
       console.log(error);
     }
   }
+
+  function handleDelete(ev: any): any {
+    ev.preventDefault();
+    try {
+      deleteGarage(garage._id).then((data) => {
+        dispatch(actions.deleteGarage({ ...data.data, isLogged: false }));
+        console.log('DELETE', data.data);
+        navigate('/');
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
+      <HeaderLogged />
       <div className="updateData">
         <h3>Actualizar Servicio</h3>
 
         <form className="listServices" onSubmit={handleSubmit}>
           <div className="group">
-            <p>ruedas</p>
-            <input
-              type="text"
-              name="ruedas"
-              onChange={(e: any) => handleChange(e)}
-              value={garage.services.ruedas}
-            />
-            <p> € </p>
+            <div className="nameService">
+              <p>ruedas</p>
+            </div>
+            <div className="prices">
+              <input
+                type="text"
+                name="ruedas"
+                onChange={(e: any) => handleChange(e)}
+                value={garage.services.ruedas}
+              />
+              <p> € </p>
+            </div>
           </div>
           <div className="group">
-            <p>aceite</p>
-            <input
-              type="text"
-              name="aceite"
-              onChange={(e: any) => handleChange(e)}
-              value={garage.services.aceite}
-            />
-            <p> € </p>
+            <div className="nameService">
+              <p>aceite</p>
+            </div>
+            <div className="prices">
+              <input
+                type="text"
+                name="aceite"
+                onChange={(e: any) => handleChange(e)}
+                value={garage.services.aceite}
+              />
+              <p> € </p>
+            </div>
           </div>
           <div className="group">
-            <p>filtros</p>
-            <input
-              type="text"
-              name="filtros"
-              onChange={(e: any) => handleChange(e)}
-              value={garage.services.filtros}
-            />
-            <p> € </p>
+            <div className="nameService">
+              <p>filtros</p>
+            </div>
+            <div className="prices">
+              <input
+                type="text"
+                name="filtros"
+                onChange={(e: any) => handleChange(e)}
+                value={garage.services.filtros}
+              />
+              <p> € </p>
+            </div>
           </div>
           <div className="group">
-            <p>amortiguadores</p>
-            <input
-              type="text"
-              name="amortiguadores"
-              onChange={(e: any) => handleChange(e)}
-              value={garage.services.amortiguadores}
-            />
-            <p> € </p>
+            <div className="nameService">
+              <p>amortiguadores</p>
+            </div>
+            <div className="prices">
+              <input
+                type="text"
+                name="amortiguadores"
+                onChange={(e: any) => handleChange(e)}
+                value={garage.services.amortiguadores}
+              />
+              <p> € </p>
+            </div>
           </div>
           <div className="group">
-            <p>discos</p>
-            <input
-              type="text"
-              name="discos"
-              onChange={(e: any) => handleChange(e)}
-              value={garage.services.discos}
-            />
-            <p> € </p>
+            <div className="nameService">
+              <p>discos</p>
+            </div>
+            <div className="prices">
+              <input
+                type="text"
+                name="discos"
+                onChange={(e: any) => handleChange(e)}
+                value={garage.services.discos}
+              />
+              <p> € </p>
+            </div>
           </div>
           <div className="group">
-            <p>pastillas</p>
-            <input
-              type="text"
-              name="pastillas"
-              onChange={(e: any) => handleChange(e)}
-              value={garage.services.pastillas}
-            />
-            <p> € </p>
+            <div className="nameService">
+              <p>pastillas</p>
+            </div>
+            <div className="prices">
+              <input
+                type="text"
+                name="pastillas"
+                onChange={(e: any) => handleChange(e)}
+                value={garage.services.pastillas}
+              />
+              <p> € </p>
+            </div>
           </div>
           <div className="group">
-            <p>aire</p>
-            <input
-              type="text"
-              name="aire"
-              onChange={(e: any) => handleChange(e)}
-              value={garage.services.aire}
-            />
-            <p> € </p>
+            <div className="nameService">
+              <p>aire</p>
+            </div>
+            <div className="prices">
+              <input
+                type="text"
+                name="aire"
+                onChange={(e: any) => handleChange(e)}
+                value={garage.services.aire}
+              />
+              <p> € </p>
+            </div>
           </div>
           <div className="group">
-            <p>bombillas</p>
-            <input
-              type="text"
-              name="bombillas"
-              onChange={(e: any) => handleChange(e)}
-              value={garage.services.bombillas}
-            />
-            <p> € </p>
+            <div className="nameService">
+              <p>bombillas</p>
+            </div>
+            <div className="prices">
+              <input
+                type="text"
+                name="bombillas"
+                onChange={(e: any) => handleChange(e)}
+                value={garage.services.bombillas}
+              />
+              <p> € </p>
+            </div>
           </div>
-          <ButtonAddChanges />
+          <div className="center buttonMyGarage">
+            <button
+              className="sendChanges"
+              type="submit"
+              onClick={handleSubmit}
+            >
+              Guardar Cambios
+            </button>
+          </div>
         </form>
       </div>
-      <div>
+      <div className="formPersonal">
         <form onSubmit={handleSubmit}>
           <h3>Mis Datos</h3>
           <p>You User</p>
@@ -160,18 +221,7 @@ function AddPrices(): JSX.Element {
               name="user"
               value={garage.user}
               placeholder="You User"
-              onChange={handleChange}
-            />
-          </label>
-          <p>Password</p>
-          <label htmlFor="pass">
-            <input
-              id="pass"
-              type="password"
-              name="pass"
-              value={garage.pass}
-              placeholder="Password"
-              onChange={handleChange}
+              onChange={(e: any) => handleChange(e)}
             />
           </label>
           <p>Name Taller</p>
@@ -179,10 +229,10 @@ function AddPrices(): JSX.Element {
             <input
               id="name"
               type="text"
-              name="name"
+              name="garage_name"
               value={garage.garage_name}
               placeholder="Name Taller"
-              onChange={handleChange}
+              onChange={(e: any) => handleChange(e)}
             />
           </label>
           <p>CIF / NIF</p>
@@ -193,7 +243,7 @@ function AddPrices(): JSX.Element {
               name="cif_nif"
               value={garage.cif_nif}
               placeholder="CIF / NIF"
-              onChange={handleChange}
+              onChange={(e: any) => handleChange(e)}
             />
           </label>
           <p>Your Email</p>
@@ -201,9 +251,9 @@ function AddPrices(): JSX.Element {
             <input
               id="mail"
               type="email"
-              name="mail"
+              name="email"
               value={garage.email}
-              onChange={handleChange}
+              onChange={(e: any) => handleChange(e)}
             />
           </label>
           <p>Your phone</p>
@@ -214,7 +264,7 @@ function AddPrices(): JSX.Element {
               name="phone"
               value={garage.phone}
               placeholder="Your Phone"
-              onChange={handleChange}
+              onChange={(e: any) => handleChange(e)}
             />
           </label>
           <p>Web Page</p>
@@ -225,7 +275,7 @@ function AddPrices(): JSX.Element {
               name="web"
               value={garage.web}
               placeholder="Web Page"
-              onChange={handleChange}
+              onChange={(e: any) => handleChange(e)}
             />
           </label>
           <p>Address</p>
@@ -236,15 +286,23 @@ function AddPrices(): JSX.Element {
               name="address"
               value={garage.address}
               placeholder="Address"
-              onChange={handleChange}
+              onChange={(e: any) => handleChange(e)}
             />
           </label>
-          <ButtonAddChanges />
+          <div className="center">
+            <button className="sendChanges" type="submit">
+              Guardar Cambios
+            </button>
+          </div>
         </form>
+        <div className="center">
+          <button className="borrar" type="submit" onClick={handleDelete}>
+            Borrar Taller
+          </button>
+        </div>
       </div>
-
-      <Footer />
     </>
   );
+  
 }
 export default AddPrices;

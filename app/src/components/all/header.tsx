@@ -19,15 +19,17 @@ function Header(): JSX.Element {
   }
   // {user.isLogged ? 'Logout' : 'Login'}
   return (
-    <div>
+    <div className="header">
       <nav>
         {!showLogin && (
           <Link to="/login/">
-            <button onClick={handleLogin}>LOGIN</button>
+            <button className="buttonHeader" onClick={handleLogin}>
+              LOGIN
+            </button>
           </Link>
         )}
         <Link to="/register/">
-          <p>Register</p>
+          <button className="buttonHeader">REGISTER</button>
         </Link>
       </nav>
 
