@@ -12,7 +12,7 @@ body{
 }
 .updateData{
   width: 100%;
-  
+  margin-bottom: 20px;
 }
 .addNewItem{
   width: 100%;
@@ -28,7 +28,7 @@ body{
 }
 .group{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   margin: auto;
   
   align-items: baseline;
@@ -38,16 +38,64 @@ body{
   }
   input{
     margin-right: 0;
-    width: 40px;
-    padding-left: 20px;
+    width: 55px;
+    padding-left: 10%;
     background-color: white;
   }
   width: 80%;
   .trash{
     color: red;
   }
+  .prices{
+    display: flex;
+    width: 30%;
+  }
+  .nameService{
+    width: 70%;
+  }
+}
+.sendChanges{
+  
+}
+.center{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  cursor: pointer;
 }
 .buttonMyGarage{
   display: flex;
   justify-content: center;
+  margin: auto;
+  cursor: pointer;
 }
+.borrar{
+  color: white;
+  background-color: #eb3c10;
+  cursor: pointer;
+}
+.formPersonal{
+  background-image: url("../../../images/capot.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+}
+.garages-prices{
+  background-image: url("../../../images/lambo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  margin-top: 0%;
+  padding-top: 50px;
+  color: white;
+  padding-bottom: 100px;
+}
+/*.myData{
+  background-image: url("../../../images/capot.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+}*/
+

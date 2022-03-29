@@ -2,35 +2,17 @@ import React, { useEffect, useState } from 'react';
 import './all.scss';
 import '../user/login.scss';
 import { CarI } from '../../interfaces/car';
-import { GarageI } from '../../interfaces/garage';
+import { GarageConIdI, GarageI } from '../../interfaces/garage';
 import { getAllGarages } from '../../services/garages';
+import Header from './header';
 
 function Home(): JSX.Element {
   const [car, setCar] = useState<CarI>({ marca: '', modelo: '', servicio: '' });
-  const [garage, setGarage] = useState<GarageI>({
-    services: {
-      ruedas: 0,
-      aceite: 0,
-      filtros: 0,
-      amortiguadores: 0,
-      discos: 0,
-      pastillas: 0,
-      aire: 0,
-      bombillas: 0,
-    },
-
-    user: '',
-    pass: '',
-    garage_name: '',
-    cif_nif: '',
-    email: '',
-    phone: '',
-    web: '',
-    address: '',
-  });
-
+  const [garage, setGarage] = useState<GarageConIdI[]>([]);
+  const [filteredGarages, setFilteredGarages] = useState<GarageConIdI[]>([]);
+  const [showResults, setShowResults] = React.useState(false);
   useEffect(() => {
-    getAllGarages(garage).then((resp) => {
+    getAllGarages().then((resp) => {
       console.log(resp.data);
       setGarage(resp.data);
     });
@@ -40,12 +22,20 @@ function Home(): JSX.Element {
     setCar({ ...car, [ev.target.name]: ev.target.value });
   }
 
-  function handleFind() {
-    console.log(setGarage);
-    console.log(setGarage(garage));
+  function handleFind(ev: any) {
+    ev.preventDefault();
+
+    console.log(
+      garage.filter((item: any) => item.services[car.servicio] !== 0)
+    );
+    setFilteredGarages(
+      garage.filter((item: any) => item.services[car.servicio] !== 0)
+    );
+    setShowResults(true);
   }
   return (
     <>
+      <Header />
       <div>
         <form onSubmit={handleFind}>
           <h3>Encuentra el mejor precio</h3>
@@ -88,39 +78,41 @@ function Home(): JSX.Element {
               value={car.servicio}
               onChange={handleChange}
             >
-              <option>ruedas</option>
-              <option>aceites</option>
-              <option>filtros</option>
-              <option>amortiguadores</option>
-              <option>discos</option>
-              <option>pastillas</option>
-              <option>aire</option>
-              <option>bombillas</option>
+              <option value="ruedas">Ruedas</option>
+              <option value="aceite">Aceites</option>
+              <option value="filtros">Filtros</option>
+              <option value="amortiguadores">Amortiguadores</option>
+              <option value="discos">Discos</option>
+              <option value="pastillas">Pastillas</option>
+              <option value="aire">Aire</option>
+              <option value="bombillas">Bombillas</option>
             </select>
           </label>
-          <button type="submit">Buscar</button>
+          <button type="submit" onClick={handleFind}>
+            Buscar
+          </button>
         </form>
       </div>
-
-      <div className="carData">
-        <div className="flex">
-          <p> {car.marca} </p>
-          <p> {car.modelo} </p>
-        </div>
-        <p className="servicio">{car.servicio}</p>
-        <div className="garages-prices">
-          <div className="garages">
-            <p>NOMBRE TALLER</p>
-            <p>NOMBRE TALLER</p>
-            <p>NOMBRE TALLER</p>
+      {showResults ? (
+        <div className="carData">
+          <div className="car">
+            <div className="flex">
+              <p> {car.marca} </p>
+              <p> {car.modelo} </p>
+            </div>
+            <p className="servicio">{car.servicio}</p>
           </div>
-          <div className="prices">
-            <p></p>
-            <p>50€</p>
-            <p>50€</p>
+          <div className="garages-prices">
+            {filteredGarages &&
+              filteredGarages.map((item) => (
+                <div key={item._id} className="garages">
+                  <p>{item.garage_name}</p>
+                  <p> {item.services[car.servicio]} €</p>
+                </div>
+              ))}
           </div>
         </div>
-      </div>
+      ) : null}
       <div className="garageData">
         <p>NOMBRE TALLER</p>
         <p>DIRECCION</p>

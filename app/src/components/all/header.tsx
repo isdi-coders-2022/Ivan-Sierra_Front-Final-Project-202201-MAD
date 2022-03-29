@@ -7,27 +7,28 @@ import './all.scss';
 function Header(): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  //const user = useSelector((state) => state.user);
-  const [showLogin, setShowLogin] = useState(false);
+  const result: any = useSelector((state: any) => state.garage);
 
   function handleLogin() {
-    /* if (user.isLogged) {
+    if (result.isLogged) {
       dispatch(actions.logout());
+      console.log('HAS DESLOGEADO');
     } else {
-      setShowLogin(true);
-    }*/
+      console.log(Error);
+    }
   }
-  // {user.isLogged ? 'Logout' : 'Login'}
+
   return (
-    <div>
+    <div className="header">
       <nav>
-        {!showLogin && (
-          <Link to="/login/">
-            <button onClick={handleLogin}>LOGIN</button>
-          </Link>
-        )}
+        <Link to="/login/">
+          <button className="buttonHeader" onClick={handleLogin}>
+            {result.isLogged ? 'LOGOUT ' : 'LOGIN'}
+          </button>
+        </Link>
+
         <Link to="/register/">
-          <p>Register</p>
+          <button className="buttonHeader">REGISTER</button>
         </Link>
       </nav>
 

@@ -13,11 +13,14 @@ export function login(user: GarageLoginI): Promise<AxiosResponse> {
 export function insertGarage(user: GarageI): Promise<AxiosResponse> {
   return axios.post(REGISTER_API, user);
 }
-export function getAllGarages(user: GarageI): Promise<AxiosResponse> {
+export function getAllGarages(): Promise<AxiosResponse> {
   return axios.get(REGISTER_API);
 }
-export function updateGarage(id: string): Promise<AxiosResponse> {
-  return axios.patch(REGISTER_API + id);
+export function updateGarage(
+  id: string,
+  update: GarageI
+): Promise<AxiosResponse> {
+  return axios.patch(REGISTER_API + id, update);
 }
 export function deleteGarage(id: string): Promise<AxiosResponse> {
   return axios.delete(REGISTER_API + id);

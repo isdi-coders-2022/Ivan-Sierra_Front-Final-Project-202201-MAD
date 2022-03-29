@@ -5,6 +5,7 @@ import { login, insertGarage } from '../../services/garages';
 import { GarageLoginI } from '../../interfaces/garageLogin';
 import * as actions from '../../redux/user/actions-creator';
 import { useNavigate } from 'react-router-dom';
+import Header from '../all/header';
 
 function LoginForm(): JSX.Element {
   const [user, setUser] = useState<GarageLoginI>({ name: '', pass: '' });
@@ -22,38 +23,42 @@ function LoginForm(): JSX.Element {
 
       dispatch(actions.login({ ...result.data, isLogged: true }));
       navigate('/taller');
+      console.log('LOGEADO');
     } catch (error) {
       console.log(error);
     }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Login</h3>
-      <p>You User</p>
+    <>
+      <Header />
+      <form onSubmit={handleSubmit}>
+        <h3>Login</h3>
+        <p>You User</p>
 
-      <label htmlFor="user">
-        <input
-          id="user"
-          type="text"
-          name="name"
-          onChange={handleChange}
-          value={user.name}
-        />
-      </label>
-      <p>Password</p>
-      <label htmlFor="pass">
-        <input
-          id="pass"
-          type="text"
-          name="pass"
-          onChange={handleChange}
-          value={user.pass}
-        />
-      </label>
+        <label htmlFor="user">
+          <input
+            id="user"
+            type="text"
+            name="name"
+            onChange={handleChange}
+            value={user.name.toLocaleUpperCase()}
+          />
+        </label>
+        <p>Password</p>
+        <label htmlFor="pass">
+          <input
+            id="pass"
+            type="text"
+            name="pass"
+            onChange={handleChange}
+            value={user.pass}
+          />
+        </label>
 
-      <button type="submit">Login</button>
-    </form>
+        <button type="submit">Login</button>
+      </form>
+    </>
   );
 }
 export default LoginForm;
