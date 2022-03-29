@@ -102,6 +102,7 @@ select{
     border-bottom: 0;
     background-color: none!important;
     border: none;
+    cursor: pointer;
 }
 .car{
   border-bottom: 3px solid black;
@@ -110,7 +111,22 @@ select{
 .header{
   background-image: url("../../images/taller3.jpg");
   margin-top: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  background-position: center center;
 }
 .headerLogged{
   background-image: url("../../images/taller1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  background-position: center center;
+}
+.headerRegister{
+  background-image: url("../../images/taller2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  background-position: center center;
 }

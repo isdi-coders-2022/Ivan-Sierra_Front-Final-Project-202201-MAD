@@ -4,9 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { GarageI } from '../../../interfaces/garage';
 import * as actions from '../../../redux/user/actions-creator';
 import { insertGarage } from '../../../services/garages';
-import Header from '../header';
 
-import ButtonAddChanges from './buttonChanges';
+import HeaderRegister from '../headerRegister';
 
 import './myGarage.scss';
 
@@ -54,7 +53,7 @@ function TallerForm(): JSX.Element {
 
   return (
     <>
-      <Header />
+      <HeaderRegister />
       <div className="myData">
         <form onSubmit={handleSubmit}>
           <h3>Añadir Taller</h3>

@@ -23,6 +23,7 @@ function LoginForm(): JSX.Element {
 
       dispatch(actions.login({ ...result.data, isLogged: true }));
       navigate('/taller');
+      console.log('LOGEADO');
     } catch (error) {
       console.log(error);
     }
