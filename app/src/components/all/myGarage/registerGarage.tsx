@@ -42,7 +42,6 @@ function TallerForm(): JSX.Element {
     try {
       insertGarage({ ...formState }).then((data) => {
         dispatch(actions.registerGarage({ ...data.data }));
-        console.log('REGISTRO', data.data);
       });
 
       navigate('/login');

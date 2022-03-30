@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as actions from '../../redux/user/actions-creator';
 import './all.scss';
 
 function Header(): JSX.Element {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const result: any = useSelector((state: any) => state.garage);
 
   function handleLogin() {
     if (result.isLogged) {
       dispatch(actions.logout());
-      console.log('HAS DESLOGEADO');
     } else {
       console.log(Error);
     }

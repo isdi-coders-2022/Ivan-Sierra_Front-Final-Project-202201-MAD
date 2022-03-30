@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './login.scss';
-import { login, insertGarage } from '../../services/garages';
+import { login } from '../../services/garages';
 import { GarageLoginI } from '../../interfaces/garageLogin';
 import * as actions from '../../redux/user/actions-creator';
 import { useNavigate } from 'react-router-dom';
@@ -23,7 +23,6 @@ function LoginForm(): JSX.Element {
 
       dispatch(actions.login({ ...result.data, isLogged: true }));
       navigate('/taller');
-      console.log('LOGEADO');
     } catch (error) {
       console.log(error);
     }
@@ -49,7 +48,7 @@ function LoginForm(): JSX.Element {
         <label htmlFor="pass">
           <input
             id="pass"
-            type="text"
+            type="password"
             name="pass"
             onChange={handleChange}
             value={user.pass}
