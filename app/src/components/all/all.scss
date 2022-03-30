@@ -41,8 +41,7 @@ select{
 .carData{
   width: 80%;
   margin: 50px auto;
-  height: 500px;
-  background: #e1ecfc;
+  
   font-size: 15px;
   
   
@@ -68,7 +67,7 @@ select{
   
   .garages{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 20px;
   }
 }
@@ -78,6 +77,7 @@ select{
   height: 130px;
   background: #e1ecfc;
   margin-bottom: 50px;
+  border-radius: 20px;
   p{
     text-align: center;
     padding-top: 15px;
@@ -129,4 +129,8 @@ select{
   background-size: cover;
   
   background-position: center center;
+}
+.buttonName{
+  text-decoration: underline;
+  cursor: pointer;
 }

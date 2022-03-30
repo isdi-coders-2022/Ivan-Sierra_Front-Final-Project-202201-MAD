@@ -24,7 +24,7 @@ describe('Header', () => {
     );
   });
 
-  const register = screen.getByText(/REGISTER/i);
+  const register = screen.getAllByText(/REGISTER/i);
 
   expect(register).toBeInTheDocument();
 });

@@ -10,7 +10,10 @@ function Home(): JSX.Element {
   const [car, setCar] = useState<CarI>({ marca: '', modelo: '', servicio: '' });
   const [garage, setGarage] = useState<GarageConIdI[]>([]);
   const [filteredGarages, setFilteredGarages] = useState<GarageConIdI[]>([]);
+  const [filteredNameGarages, setFilteredNameGarages] =
+    useState<GarageConIdI>();
   const [showResults, setShowResults] = React.useState(false);
+  const [showNameGarage, setShowNameGarage] = React.useState(false);
   useEffect(() => {
     getAllGarages().then((resp) => {
       console.log(resp.data);
@@ -25,13 +28,20 @@ function Home(): JSX.Element {
   function handleFind(ev: any) {
     ev.preventDefault();
 
-    console.log(
-      garage.filter((item: any) => item.services[car.servicio] !== 0)
-    );
+    // console.log(
+    //   garage.filter((item: any) => item.services[car.servicio] !== 0)
+    // );
     setFilteredGarages(
       garage.filter((item: any) => item.services[car.servicio] !== 0)
     );
     setShowResults(true);
+  }
+  function handleShowName(ev: any) {
+    ev.preventDefault();
+    setFilteredNameGarages(
+      garage.find((item: any) => item._id === ev.target.dataset.id)
+    );
+    setShowNameGarage(true);
   }
   return (
     <>
@@ -106,18 +116,30 @@ function Home(): JSX.Element {
             {filteredGarages &&
               filteredGarages.map((item) => (
                 <div key={item._id} className="garages">
-                  <p>{item.garage_name}</p>
+                  <p
+                    className="buttonName"
+                    data-id={item._id}
+                    onClick={handleShowName}
+                  >
+                    {item.garage_name}
+                  </p>
                   <p> {item.services[car.servicio]} €</p>
                 </div>
               ))}
           </div>
         </div>
       ) : null}
-      <div className="garageData">
-        <p>NOMBRE TALLER</p>
-        <p>DIRECCION</p>
-        <p>TELEFONO</p>
-      </div>
+      {showNameGarage ? (
+        <div className="garageData">
+          {filteredNameGarages && (
+            <div key={filteredNameGarages._id} className="garageName">
+              <p>{filteredNameGarages.garage_name}</p>
+              <p>{filteredNameGarages.address}</p>
+              <p>{filteredNameGarages.phone}</p>
+            </div>
+          )}
+        </div>
+      ) : null}
     </>
   );
 }
