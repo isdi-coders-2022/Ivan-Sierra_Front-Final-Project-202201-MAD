@@ -7,7 +7,6 @@ import {
   updateGarage,
 } from '../../../services/garages';
 import { useNavigate } from 'react-router-dom';
-import Footer from '../footer';
 
 import './myGarage.scss';
 import * as actions from '../../../redux/user/actions-creator';
@@ -37,15 +36,14 @@ function AddPrices(): JSX.Element {
     address: '',
   });
   const user = useAppSelector((state) => state.garage);
-  console.log('AKI', user);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
     getGarage(user.id).then((resp) => {
-      console.log(resp.data);
       setGarage(resp.data);
     });
-  }, []);
+  }, [user.id]);// o vacio
 
   const handleChange = (e: any) => {
     setGarage({
@@ -60,7 +58,6 @@ function AddPrices(): JSX.Element {
     try {
       updateGarage(garage._id, garage).then((data) => {
         dispatch(actions.updateGarage({ ...data.data, isLogged: true }));
-        console.log('UPDATE', data.data);
       });
     } catch (error) {
       console.log(error);
@@ -72,7 +69,7 @@ function AddPrices(): JSX.Element {
     try {
       deleteGarage(garage._id).then((data) => {
         dispatch(actions.deleteGarage({ ...data.data, isLogged: false }));
-        console.log('DELETE', data.data);
+
         navigate('/');
       });
     } catch (error) {
@@ -303,6 +300,5 @@ function AddPrices(): JSX.Element {
       </div>
     </>
   );
-  
 }
 export default AddPrices;

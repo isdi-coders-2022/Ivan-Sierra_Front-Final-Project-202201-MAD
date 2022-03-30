@@ -10,8 +10,8 @@ function Footer(): JSX.Element {
           FIX
           <span>CAR</span>
         </h2>
-        <p>Calle Mierdaseca 45</p>
-        <p>28320 Pinto,Madrid</p>
+        <p>Calle Viriato 22</p>
+        <p>28320 Pinto, (Madrid)</p>
         <p>91 675 76 32</p>
         <p>2022 ©Fixcar</p>
       </div>

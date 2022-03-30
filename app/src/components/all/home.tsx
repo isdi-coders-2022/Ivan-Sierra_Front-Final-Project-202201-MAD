@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './all.scss';
 import '../user/login.scss';
 import { CarI } from '../../interfaces/car';
-import { GarageConIdI, GarageI } from '../../interfaces/garage';
+import { GarageConIdI } from '../../interfaces/garage';
 import { getAllGarages } from '../../services/garages';
 import Header from './header';
 
@@ -16,7 +16,6 @@ function Home(): JSX.Element {
   const [showNameGarage, setShowNameGarage] = React.useState(false);
   useEffect(() => {
     getAllGarages().then((resp) => {
-      console.log(resp.data);
       setGarage(resp.data);
     });
   }, []);
@@ -28,9 +27,6 @@ function Home(): JSX.Element {
   function handleFind(ev: any) {
     ev.preventDefault();
 
-    // console.log(
-    //   garage.filter((item: any) => item.services[car.servicio] !== 0)
-    // );
     setFilteredGarages(
       garage.filter((item: any) => item.services[car.servicio] !== 0)
     );
